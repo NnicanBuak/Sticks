@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,16 +129,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SticksGame.cpp" />
-    <ClCompile Include="SticksGameSquares.cpp" />
+    <ClCompile Include="app\main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\SticksGame.cpp" />
+    <ClCompile Include="src\SticksGameSquares.cpp" />
+    <ClCompile Include="src\StucksGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameStructures.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SticksGame.h" />
-    <ClInclude Include="SticksGameSquares.h" />
+    <ClInclude Include="include\GameStructures.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\SticksGame.h" />
+    <ClInclude Include="include\SticksGameSquares.h" />
+    <ClInclude Include="include\StucksGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,14 +3,13 @@
 Cell::Cell(size_t num_sides)
 {
     for (int i = 0; i < num_sides; ++i) {
-        side_status[i] = false;
+        sides_status[i] = false;
     }
 }
 
-GameBoard::GameBoard(size_t size, size_t cell_size)
-{
-    // Initialization 2d matrix of Cells 
-    grid.resize(size, vector<Cell>(size, Cell(cell_size)));
+GameBoard::GameBoard(size_t size, size_t cell_sides)
+{ 
+    grid.resize(size, vector<Cell>(size, Cell(cell_sides)));
 }
 
 vector<Cell> GameBoard::flatten() const
@@ -26,4 +25,16 @@ vector<Cell> GameBoard::flatten() const
     return flattened;
 }
 
+size_t GameBoard::getSize() const {
+    return grid.size() * grid[0].size();
+}
+
+size_t GameBoard::getCellSides() const {
+    return grid[0][0].num_sides;
+}
+
+int GameBoard::getTotalCells() const
+{
+    return getSize() * getSize();
+}
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "GameBoard.h"
 
 using namespace std;
 
@@ -10,7 +11,8 @@ protected:
 	int cells_claimed;
 public:
 	char getName() const;
-	virtual void makeMove(GameBoard board) = 0;
+	int getTotalCellsClaimed() const;
+	virtual Cell* getDecision(GameBoard& board) = 0;
 	Player(char name) : name(name), cells_claimed(0) {};
 	virtual ~Player() {};
 };

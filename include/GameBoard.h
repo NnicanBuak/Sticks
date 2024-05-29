@@ -1,4 +1,5 @@
 #pragma once
+#include "Player.h"
 #include <vector>
 #include <map>
 
@@ -6,18 +7,20 @@ using namespace std;
 
 struct Cell {
     size_t num_sides;
-    map<int, bool> side_status;
+    map<int, Player*> sides_status;
+    Player* claimed_by;
 
-    Cell(size_t num_sides) : num_sides(num_sides) {};
+    Cell(size_t num_sides) : num_sides(num_sides), claimed_by(nullptr) {};
     ~Cell() {};
 };
 
 struct GameBoard {
-    size_t size;
-    size_t cell_size;
     vector<vector<Cell>> grid;
 
-    GameBoard(size_t size, size_t cell_size) : size(size), cell_size(cell_size) {};
-    ~GameBoard() {};
     vector<Cell> flatten() const;
+    int getTotalCells() const;
+    size_t getSize() const;
+    size_t getCellSides() const;
+    GameBoard(size_t size, size_t cell_sides) : grid(size, vector<Cell>(size)) {};
+    ~GameBoard() {};
 };

@@ -1,15 +1,16 @@
 #pragma once
-#include <string>
 
 using namespace std;
 
 class Player
 {
 private:
-	string name;
-	int cells_marked;
+	char name;
+protected:
+	int cells_claimed;
 public:
-	string getName() const;
-	Player(string name) : name(name), cells_marked(0) {};
+	char getName() const;
+	virtual void makeMove(GameBoard board) = 0;
+	Player(char name) : name(name), cells_claimed(0) {};
 	virtual ~Player() {};
 };

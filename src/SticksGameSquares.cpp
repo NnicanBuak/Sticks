@@ -1,4 +1,5 @@
-#include "SticksGameSquares.h"
+#include "../include/SticksGameSquares.h" 
+#include <stdlib.h>
 
 using namespace std;
 

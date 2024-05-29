@@ -1,5 +1,5 @@
 #pragma once
-#include "GameStructures.h"
+#include "GameBoard.h"
 #include "Player.h"
 #include <iostream>
 #include <vector>

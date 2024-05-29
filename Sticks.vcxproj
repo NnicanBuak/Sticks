@@ -129,18 +129,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="app\main.cpp" />
+    <ClCompile Include="src\GameBoard.cpp" />
+    <ClCompile Include="src\Human.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SticksGame.cpp" />
     <ClCompile Include="src\SticksGameSquares.cpp" />
-    <ClCompile Include="src\StucksGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\GameStructures.h" />
+    <ClInclude Include="include\Human.h" />
+    <ClInclude Include="include\GameBoard.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SticksGame.h" />
     <ClInclude Include="include\SticksGameSquares.h" />
-    <ClInclude Include="include\StucksGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

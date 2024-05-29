@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="app\main.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Player.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -25,12 +25,15 @@
     <ClCompile Include="src\SticksGameSquares.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\StucksGame.cpp">
+    <ClCompile Include="src\Human.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameBoard.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\GameStructures.h">
+    <ClInclude Include="include\GameBoard.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\Player.h">
@@ -42,7 +45,7 @@
     <ClInclude Include="include\SticksGameSquares.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\StucksGame.h">
+    <ClInclude Include="include\Human.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

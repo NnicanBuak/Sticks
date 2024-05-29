@@ -1,4 +1,4 @@
-#include "SticksGame.h"
+#include "../include/SticksGame.h"
 
 SticksGame::~SticksGame() {}
 

@@ -1,6 +1,9 @@
-#include "Player.h"
+#include "../include/Player.h"
+#include <iostream>
 
-string Player::getName() const
+using namespace std;
+
+char Player::getName() const
 {
-	return this->name;
-}
+	return name;
+} 

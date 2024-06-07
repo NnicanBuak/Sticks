@@ -1,18 +1,21 @@
 #pragma once
-#include "GameBoard.h"
-
-using namespace std;
+#include "Board.h"
 
 class Player
 {
 private:
-	char name;
+	static int current_id;
 protected:
-	int cells_claimed;
+	int id;
+	char name;
+	int cells_claimed = 0;
 public:
+	char getId() const;
 	char getName() const;
 	int getTotalCellsClaimed() const;
-	virtual Cell* getDecision(GameBoard& board) = 0;
-	Player(char name) : name(name), cells_claimed(0) {};
-	virtual ~Player() {};
+
+	virtual int getDecision(Board board) const = 0;
+	
+	Player(char name) : id(current_id++), name(name) {};
+	~Player() {};
 };

@@ -25,18 +25,21 @@
     <ClCompile Include="src\SticksGameSquares.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Human.cpp">
+    <ClCompile Include="src\HumanPlayer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameBoard.cpp">
+    <ClCompile Include="src\Board.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Opponent.cpp">
+    <ClCompile Include="src\ArtificialPlayer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cell.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\GameBoard.h">
+    <ClInclude Include="include\Board.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\Player.h">
@@ -48,10 +51,13 @@
     <ClInclude Include="include\SticksGameSquares.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\Human.h">
+    <ClInclude Include="include\HumanPlayer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\Opponent.h">
+    <ClInclude Include="include\ArtificialPlayer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Cell.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

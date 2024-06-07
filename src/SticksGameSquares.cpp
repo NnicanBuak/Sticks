@@ -5,18 +5,18 @@ using namespace std;
 
 void SticksGameSquares::drawBoard()  const
 {
-    for (int i = 0; i < board.getSize(); ++i) {
-        // Вывод верхней части клетки
-        for (int j = 0; j < board.getSize(); ++j) {
+    for (int i = 0; i < board.getSizeX(); ++i) {
+        // top part
+        for (int j = 0; j < board.getSizeX(); ++j) {
             cout << "•---";
         }
         cout << "•" << endl;
 
-        // Вывод середины клетки и информации о захвате
-        for (int j = 0; j < board.getSize(); j++) {
+        // middle part
+        for (int j = 0; j < board.getSizeX(); j++) {
             cout << "| ";
-            if (board.grid[i][j].claimed_by != nullptr) {
-                cout << board.grid[i][j].claimed_by->getName();
+            if (board.getGrid()[i][j].player_id_claimed_by != -1) {
+                cout << getPlayer(board.getGrid()[i][j].player_id_claimed_by)->getName();
             }
             else {
                 cout << " "; 
@@ -25,22 +25,25 @@ void SticksGameSquares::drawBoard()  const
         }
         cout << "|" << endl;
 
-        // Вывод нижней части клетки
-        for (int j = 0; j < board.getSize(); j++) {
-            cout << "•---";
+        // bottom part
+        if (i == board.getSizeX() - 1)
+        {
+            for (int j = 0; j < board.getSizeX(); j++) {
+                if (board.getGrid()[i][j].player_id_claimed_by == -1 or board.getGrid()[i][j].getSideStatus(2))
+                    cout << "•---";
+            }
+            cout << "•" << endl;
         }
-        cout << "•" << endl;
     }
 }
-
 
 Player* SticksGameSquares::getWinner() const {
     int maxCells = -1;
     Player* winner = nullptr;
     for (auto player : players) { 
-        if (player.getTotalCellsClaimed() > maxCells) {
-            maxCells = player.getTotalCellsClaimed();
-            winner = &player;
+        if (player->getTotalCellsClaimed() > maxCells) {
+            maxCells = player->getTotalCellsClaimed();
+            winner = player;
         }
     }
      
@@ -51,4 +54,9 @@ Player* SticksGameSquares::getWinner() const {
      
     cout << "The game ends in a draw! All cells are claimed." << endl;
     return winner;
+}
+
+Cell* SticksGameSquares::makeMove(Board board)
+{
+    return nullptr;
 }

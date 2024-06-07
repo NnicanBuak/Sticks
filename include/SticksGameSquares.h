@@ -1,12 +1,16 @@
 #pragma once
 #include "SticksGame.h"
+#include "Player.h"
 
 class SticksGameSquares :
     public SticksGame
 {
+private:
+    pair<int, Player*> turn;
 public:
-    void drawBoard() const;
     Player* getWinner() const;
-    SticksGameSquares(size_t boardSize, vector<Player> players) : SticksGame(4, boardSize, players) {}
-    ~SticksGameSquares() {}
+    Cell* makeMove(Board board) override;
+    void drawBoard() const;
+    SticksGameSquares(size_t boardSize, vector<Player*> players) : SticksGame(4, boardSize, players) {};
+    ~SticksGameSquares() {};
 };

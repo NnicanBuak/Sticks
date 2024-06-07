@@ -1,6 +1,7 @@
 ﻿#include "include/SticksGameSquares.h"
 #include "include/Player.h"
-#include "include/Human.h"
+#include "include/HumanPlayer.h"
+#include "include/ArtificialPlayer.h"
 #include <vector>
 #include <iostream>
 
@@ -15,7 +16,7 @@ int main()
     //cout << "Enter P2 name: ";
     //cin >> name2;
     //cout << endl;
-    SticksGameSquares game(3, vector<Player>({ new Human('A'), new Opponent('B') }));
+    SticksGameSquares game(size_t(3), vector<Player*>({ new HumanPlayer('A'), new ArtificialPlayer('B') }));
     game.drawBoard();
     return 0;
 }

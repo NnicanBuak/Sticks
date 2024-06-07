@@ -1,8 +1,16 @@
 #include "../include/SticksGame.h"
 
-SticksGame::~SticksGame() {}
-
 bool SticksGame::isGameOver() const
 {
-    return !winner->getName().empty();
+    return winner->getName() != '\0'; 
+}
+
+Player* SticksGame::getPlayer(int id) const
+{
+    for (auto player : players)
+    {
+        if (player->getId() == id)
+            return player;
+    }
+    return nullptr;
 }

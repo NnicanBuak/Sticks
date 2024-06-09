@@ -5,58 +5,64 @@ using namespace std;
 
 void SticksGameSquares::drawBoard()  const
 {
-    for (int i = 0; i < board.getSizeX(); ++i) {
+    for (int i = 0; i < board.getSizeY(); ++i) {
         // top part
-        for (int j = 0; j < board.getSizeX(); ++j) {
-            cout << "•---";
+        for (int j = 0; j < board.getSizeX(); j++) {
+            if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(0))
+            {
+                cout << "•   ";
+            }
+            else
+            {
+                cout << "•---";
+            }
         }
         cout << "•" << endl;
 
         // middle part
         for (int j = 0; j < board.getSizeX(); j++) {
-            cout << "| ";
-            if (board.getGrid()[i][j].player_id_claimed_by != -1) {
-                cout << getPlayer(board.getGrid()[i][j].player_id_claimed_by)->getName();
+            if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(3))
+            {
+                cout << " ";
             }
-            else {
-                cout << " "; 
+            else
+            {
+                cout << "|";
+            }
+            cout << " ";
+            if (board.getGrid()[i][j].player_id_claimed_by == -1) {
+                cout << " ";
+            }
+            else 
+            {
+                cout << getPlayer(board.getGrid()[i][j].player_id_claimed_by)->getName();
             }
             cout << " ";
         }
-        cout << "|" << endl;
+        if (board.getGrid()[i][board.getSizeX() - 1].getSideStatus(1))
+            cout << "|";
+        cout << endl;
 
         // bottom part
         if (i == board.getSizeX() - 1)
         {
             for (int j = 0; j < board.getSizeX(); j++) {
-                if (board.getGrid()[i][j].player_id_claimed_by == -1 or board.getGrid()[i][j].getSideStatus(2))
+                if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(2))
+                {
+                    cout << "•   ";
+                }
+                else
+                {
                     cout << "•---";
+                }
             }
             cout << "•" << endl;
         }
     }
 }
 
-Player* SticksGameSquares::getWinner() const {
-    int maxCells = -1;
-    Player* winner = nullptr;
-    for (auto player : players) { 
-        if (player->getTotalCellsClaimed() > maxCells) {
-            maxCells = player->getTotalCellsClaimed();
-            winner = player;
-        }
-    }
-     
-    if (winner != nullptr && maxCells > board.getTotalCells() / 2) {
-        cout << "Player " << winner->getName() << " wins by having the most claimed cells! (" << winner->getTotalCellsClaimed() << ")" << endl;
-        return winner;
-    } 
-     
-    cout << "The game ends in a draw! All cells are claimed." << endl;
-    return winner;
-}
-
-Cell* SticksGameSquares::makeMove(Board board)
+Cell* SticksGameSquares::nextTurn()
 {
-    return nullptr;
+    int move = getPlayer(turn_player_id)->getDecision(board);
+    return board.getFlattenGrid();
 }

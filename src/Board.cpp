@@ -1,5 +1,4 @@
 #include "../include/Board.h"
-#include "../include/Cell.h"
 
 using namespace std;
 
@@ -19,6 +18,19 @@ vector<Cell> Board::getFlattenGrid() const
     }
 
     return flattened;
+}
+
+bool Board::hasEmptyCells() const
+{
+    for (int i = 0; i < getSizeX(); i++)
+    {
+        for (int j = 0; j < getSizeY(); j++)
+            for (int k = 0; k < grid[i][j].getNumSides(); k++)
+            {
+                if (grid[i][j].getSideStatus(k) == -1)
+                    return false;
+            }
+    }
 }
 
 size_t Board::getSizeX() const {

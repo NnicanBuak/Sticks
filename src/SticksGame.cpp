@@ -1,8 +1,12 @@
 #include "../include/SticksGame.h"
 
-bool SticksGame::isGameOver() const
+void SticksGame::start()
 {
-    return winner->getName() != '\0'; 
+    drawBoard();
+    while (getWinner() == nullptr)
+    {
+        nextTurn();
+    }
 }
 
 Player* SticksGame::getPlayer(int id) const
@@ -14,3 +18,28 @@ Player* SticksGame::getPlayer(int id) const
     }
     return nullptr;
 }
+
+Player* SticksGame::getWinner() const {
+    // Find Player with max claimed cells
+    int maxCells = -1;
+    Player* winner = nullptr;
+    for (auto player : players) {
+        if (player->getTotalCellsClaimed() > maxCells) {
+            maxCells = player->getTotalCellsClaimed();
+            winner = player;
+        }
+    }
+
+    // Check winning condition
+    if (winner != nullptr && maxCells > board.getTotalCells() / 2) {
+        return winner;
+    }
+
+    return winner;
+}
+
+bool SticksGame::isGameOver() const
+{
+    return !board.hasEmptyCells();
+}
+

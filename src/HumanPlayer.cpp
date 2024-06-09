@@ -1,23 +1,42 @@
 #include "../include/HumanPlayer.h"
-#include "../include/Board.h"
 #include <iostream>
 #include <string>
+#ifdef __has_include
+#if __has_include(<ncurses.h>)
+#define HAVE_NCURSES true
+#include <ncurses.h>
+#else
+#define HAVE_NCURSES false
+#endif
+#endif
 
 using namespace std;
 
-int HumanPlayer::getDecision(Board board) const
+Cell* HumanPlayer::getDecision(Board board) const
 {
 	string input;
 	cout << "Choose cell: ";
 	cin >> input;
 	cout << endl;
 
-	vector<Cell> cells = board.getFlattenGrid();
-	int normalized_input = stoi(input);
-	if (cells.size() < normalized_input <= 0)
-	{
-		return -1;
-	}
+    vector<Cell> cells = board.getFlattenGrid();
 
-	return normalized_input;
+    try {
+        int normalized_input = stoi(input);
+        if (normalized_input >= 0 && normalized_input < cells.size()) {
+            return &cells[normalized_input];
+        }
+        else {
+            cout << "Invalid input. Please choose a cell within range." << endl;
+            return nullptr;
+        }
+    }
+    catch (const std::invalid_argument& e) {
+        cout << "Invalid input. Please enter a valid number." << endl;
+        return nullptr;
+    }
+    catch (const std::out_of_range& e) {
+        cout << "Invalid input. Number out of range." << endl;
+        return nullptr;
+    }
 }

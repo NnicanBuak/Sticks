@@ -5,7 +5,7 @@ class ArtificialPlayer :
     public Player
 {
 public:
-    int getDecision(Board board) const override;
+    void getDecision(Board board) const override;
 
     ArtificialPlayer(char name) : Player(name) {}
     ~ArtificialPlayer() {}

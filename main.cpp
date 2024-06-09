@@ -16,7 +16,7 @@ int main()
     //cout << "Enter P2 name: ";
     //cin >> name2;
     //cout << endl;
-    SticksGameSquares game(size_t(3), vector<Player*>({ new HumanPlayer('A'), new ArtificialPlayer('B') }));
-    game.drawBoard();
+    SticksGameSquares game(size_t(2), vector<Player*>({ new HumanPlayer('A'), new ArtificialPlayer('B') }));
+    game.start();
     return 0;
 }

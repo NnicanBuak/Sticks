@@ -9,16 +9,15 @@ class Board {
 private:
     vector<vector<Cell>> grid;
 public:
-    vector<vector<Cell>> getGrid() const;
-    vector<Cell> getFlattenGrid() const;
+    //vector<vector<Cell*>> getGrid() const;
+    vector<Cell*> getFlattenGrid() const;
+    bool hasEmptyCells() const;
     size_t getSizeX() const;
     size_t getSizeY() const;
     size_t getTotalCells() const;
     size_t getCellSides() const;
 
-    Board(size_t size, size_t cell_sides) : grid(size, vector<Cell>(size))
-    {
-        grid.resize(size, vector<Cell>(size, Cell(cell_sides)));
-    }
+    Board(size_t cellSides, size_t size) : grid(size, vector<Cell>(size, Cell(cellSides))) {};
+    Board(size_t cellSides, size_t sizeX, size_t sizeY) : grid(sizeX, vector<Cell>(sizeY, Cell(cellSides))) {};
     ~Board() {};
 };

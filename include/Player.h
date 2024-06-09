@@ -14,7 +14,7 @@ public:
 	char getName() const;
 	int getTotalCellsClaimed() const;
 
-	virtual int getDecision(Board board) const = 0;
+	virtual void getDecision(Board board) const = 0;
 	
 	Player(char name) : id(current_id++), name(name) {};
 	~Player() {};

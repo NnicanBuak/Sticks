@@ -1,13 +1,19 @@
 #pragma once
 #include <map>
+#include <iostream>
 
 using namespace std;
+
+struct SideStatus {
+    int player_id = -1;
+    bool shared = false;
+};
 
 class Cell {
 private:
     size_t num_sides;
     // By default start side (0) - top
-    map<int, int> sides_statuses; // {side_num, player_id}
+    map<int, SideStatus> sides_statuses;
 public:
     int player_id_claimed_by = -1;
 
@@ -16,12 +22,6 @@ public:
 
     bool setSideStatus(int side_num, int player_id);
 
-    Cell(size_t num_sides) : num_sides(num_sides)
-    {
-        for (int i = 0; i < num_sides; ++i) {
-            sides_statuses[i] = false;
-        }
-    }
-    Cell() : num_sides(0) {}
+    Cell(size_t num_sides) : num_sides(num_sides) {};
     ~Cell() {};
 };

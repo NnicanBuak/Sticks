@@ -1,9 +1,8 @@
 #include "../include/Player.h"
-#include <iostream>
 
 using namespace std;
 
-int Player::current_id = 0;
+int Player::current_id = -1;
 
 char Player::getId() const
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "Board.h"
 
+
 class Player
 {
 private:
@@ -10,12 +11,12 @@ protected:
 	char name;
 	int cells_claimed = 0;
 public:
+	explicit Player(char name);
+	~Player() {};
+
 	char getId() const;
 	char getName() const;
 	int getTotalCellsClaimed() const;
 
-	virtual void getDecision(Board board) const = 0;
-	
-	Player(char name) : id(current_id++), name(name) {};
-	~Player() {};
+	virtual Cell* requestDecision(Board board) const = 0;
 };

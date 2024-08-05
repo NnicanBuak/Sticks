@@ -34,9 +34,6 @@
     <ClCompile Include="src\ArtificialPlayer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Cell.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Board.h">
@@ -57,7 +54,7 @@
     <ClInclude Include="include\ArtificialPlayer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\Cell.h">
+    <ClInclude Include="include\flatten.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,23 +1,46 @@
 #pragma once
-#include "Cell.h"
-#include <vector>
-#include <map>
+#include <vector> 
 
 using namespace std;
 
+
+struct Cell {
+	bool claimed = false;
+	int player_id_claimed_by = 0;
+};
+
+struct SidesNode {
+	bool right = false;
+	bool down = false;
+};
+
 class Board {
 private:
-    vector<vector<Cell>> grid;
-public:
-    //vector<vector<Cell*>> getGrid() const;
-    vector<Cell*> getFlattenGrid() const;
-    bool hasEmptyCells() const;
-    size_t getSizeX() const;
-    size_t getSizeY() const;
-    size_t getTotalCells() const;
-    size_t getCellSides() const;
+	vector<vector<Cell>> grid_cells;
+	vector<Cell> flatten_grid_cells;
 
-    Board(size_t cellSides, size_t size) : grid(size, vector<Cell>(size, Cell(cellSides))) {};
-    Board(size_t cellSides, size_t sizeX, size_t sizeY) : grid(sizeX, vector<Cell>(sizeY, Cell(cellSides))) {};
-    ~Board() {};
+	vector<vector<SidesNode>> grid_sides_nodes;
+	vector<SidesNode> flatten_grid_sides_nodes;
+public:
+	explicit Board(size_t size);
+	explicit Board(size_t sizeX, size_t sizeY);
+	~Board() {};
+
+	vector<vector<Cell>> getGridCells() const;
+	vector<Cell> getFlattenGridCells() const;
+
+	vector<vector<SidesNode>> getGridNodeSides() const;
+	vector<SidesNode> getFlattenGridNodesSides() const;
+
+	bool hasEmptyCells() const;
+
+	size_t getCellsSizeX() const;
+	size_t getCellsSizeY() const;
+
+	size_t getSidesNodesSizeX() const;
+	size_t getSidesNodesSizeY() const;
+
+	size_t getCellsTotal() const;
+	size_t getSidesNodesTotal() const; 
+	size_t getSidesTotal() const;
 };

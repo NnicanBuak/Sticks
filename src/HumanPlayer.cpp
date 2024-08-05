@@ -12,19 +12,23 @@
 
 using namespace std;
 
-Cell* HumanPlayer::getDecision(Board board) const
+
+HumanPlayer::HumanPlayer(char name) :
+    Player(name) {};
+
+Cell* HumanPlayer::requestDecision(Board board) const
 {
 	string input;
 	cout << "Choose cell: ";
 	cin >> input;
 	cout << endl;
 
-    vector<Cell> cells = board.getFlattenGrid();
+    vector<Cell> cells = board.getFlattenGridCells();
 
     try {
         int normalized_input = stoi(input);
         if (normalized_input >= 0 && normalized_input < cells.size()) {
-            return &cells[normalized_input];
+            return &(cells[normalized_input]);
         }
         else {
             cout << "Invalid input. Please choose a cell within range." << endl;

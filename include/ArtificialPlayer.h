@@ -1,13 +1,14 @@
 #pragma once
 #include "Player.h"
 
+
 class ArtificialPlayer :
     public Player
 {
 public:
-    void getDecision(Board board) const override;
+    explicit ArtificialPlayer(char name);
+    ~ArtificialPlayer() {};
 
-    ArtificialPlayer(char name) : Player(name) {}
-    ~ArtificialPlayer() {}
+    Cell* requestDecision(Board board) const override;
 };
 

@@ -1,6 +1,11 @@
 #include "../include/ArtificialPlayer.h"
 
-Cell* ArtificialPlayer::getDecision(Board board) const
+
+ArtificialPlayer::ArtificialPlayer(char name) :
+    Player(name)
+{};
+
+Cell* ArtificialPlayer::requestDecision(Board board) const
 {
     return nullptr;
 }

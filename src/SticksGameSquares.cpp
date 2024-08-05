@@ -3,66 +3,78 @@
 
 using namespace std;
 
-void SticksGameSquares::drawBoard()  const
+
+SticksGameSquares::SticksGameSquares(size_t boardSize, vector<Player*> players) :
+	SticksGame(4, boardSize, players)
+{};
+
+void SticksGameSquares::nextTurn()
 {
-    for (int i = 0; i < board.getSizeY(); ++i) {
-        // top part
-        for (int j = 0; j < board.getSizeX(); j++) {
-            if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(0))
-            {
-                cout << "•   ";
-            }
-            else
-            {
-                cout << "•---";
-            }
-        }
-        cout << "•" << endl;
-
-        // middle part
-        for (int j = 0; j < board.getSizeX(); j++) {
-            if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(3))
-            {
-                cout << " ";
-            }
-            else
-            {
-                cout << "|";
-            }
-            cout << " ";
-            if (board.getGrid()[i][j].player_id_claimed_by == -1) {
-                cout << " ";
-            }
-            else 
-            {
-                cout << getPlayer(board.getGrid()[i][j].player_id_claimed_by)->getName();
-            }
-            cout << " ";
-        }
-        if (board.getGrid()[i][board.getSizeX() - 1].getSideStatus(1))
-            cout << "|";
-        cout << endl;
-
-        // bottom part
-        if (i == board.getSizeX() - 1)
-        {
-            for (int j = 0; j < board.getSizeX(); j++) {
-                if (board.getGrid()[i][j].player_id_claimed_by == -1 or !board.getGrid()[i][j].getSideStatus(2))
-                {
-                    cout << "•   ";
-                }
-                else
-                {
-                    cout << "•---";
-                }
-            }
-            cout << "•" << endl;
-        }
-    }
+	Cell* move = getPlayer(turn_player_id)->requestDecision(board);
 }
 
-Cell* SticksGameSquares::nextTurn()
+void SticksGameSquares::drawBoard() const
 {
-    int move = getPlayer(turn_player_id)->getDecision(board);
-    return board.getFlattenGrid();
+	//
+	vector<Cell> test = board.getFlattenGridCells();
+	//
+	vector<vector<Cell>> grid_cells = board.getGridCells();
+	vector<vector<SidesNode>> grid_sides_nodes = board.getGridNodeSides();
+	for (int i = 0; i < board.getSidesNodesSizeY(); ++i) {
+		// top part
+		for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
+			if (!grid_sides_nodes[i][j].right)
+			{
+				cout << "•   ";
+			}
+			else
+			{
+				cout << "•---";
+			}
+		}
+		cout << "•" << endl;
+
+		// middle part
+		if (i < board.getCellsSizeY())
+		{
+			for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
+				if (!grid_sides_nodes[i][j].down)
+				{
+					cout << " ";
+				}
+				else
+				{
+					cout << "|";
+				}
+
+				cout << " ";
+
+				if (grid_cells[i][j].claimed) {
+					cout << getPlayer(grid_cells[i][j].player_id_claimed_by)->getName();
+				}
+				else
+				{
+					cout << " ";
+				}
+
+				cout << " ";
+			}
+			if (grid_sides_nodes[i][board.getCellsSizeX() - 1].down)
+				cout << "|";
+			cout << endl;
+		}
+
+		// bottom part
+		for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
+			if (grid_sides_nodes[i][j].right)
+			{
+				cout << "•---";
+			}
+			else
+			{
+				cout << "•   ";
+			}
+		}
+		cout << "•" << endl;
+	}
 }

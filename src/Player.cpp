@@ -2,7 +2,12 @@
 
 using namespace std;
 
+
 int Player::current_id = -1;
+
+Player::Player(char name) :
+	id(current_id++), name(name)
+{};
 
 char Player::getId() const
 {

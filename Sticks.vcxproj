@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ArtificialPlayer.cpp" />
-    <ClCompile Include="src\Cell.cpp" />
     <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\HumanPlayer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -141,7 +140,7 @@
     <ClCompile Include="src\SticksGameSquares.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Cell.h" />
+    <ClInclude Include="include\flatten.h" />
     <ClInclude Include="include\HumanPlayer.h" />
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Player.h" />

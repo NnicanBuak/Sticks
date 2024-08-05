@@ -17,10 +17,7 @@ struct SidesNode {
 class Board {
 private:
 	vector<vector<Cell>> grid_cells;
-	vector<Cell> flatten_grid_cells;
-
 	vector<vector<SidesNode>> grid_sides_nodes;
-	vector<SidesNode> flatten_grid_sides_nodes;
 public:
 	explicit Board(size_t size);
 	explicit Board(size_t sizeX, size_t sizeY);

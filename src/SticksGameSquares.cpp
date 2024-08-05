@@ -15,36 +15,54 @@ void SticksGameSquares::nextTurn()
 
 void SticksGameSquares::drawBoard() const
 {
-	//
-	vector<Cell> test = board.getFlattenGridCells();
-	//
 	vector<vector<Cell>> grid_cells = board.getGridCells();
 	vector<vector<SidesNode>> grid_sides_nodes = board.getGridNodeSides();
 	for (int i = 0; i < board.getSidesNodesSizeY(); ++i) {
-		// top part
-		for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
-			if (!grid_sides_nodes[i][j].right)
-			{
-				cout << "•   ";
-			}
-			else
-			{
-				cout << "•---";
-			}
-		}
-		cout << "•" << endl;
-
-		// middle part
 		if (i < board.getCellsSizeY())
 		{
+			// drawing right side of Nodes
 			for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
-				if (!grid_sides_nodes[i][j].down)
+				if (j == board.getCellsSizeX())
 				{
-					cout << " ";
+					cout << "•" << endl;
+					break;
+				}
+
+				cout << "•";
+
+				if (grid_sides_nodes[i][j].right)
+				{
+					cout << "---";
 				}
 				else
 				{
+					cout << "   ";
+				}
+			}
+
+			// drawing down side of Nodes and middle of Cell
+			for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
+				if (j == board.getCellsSizeX())
+				{
+					if (grid_sides_nodes[i][j].down)
+					{
+						cout << "|";
+					}
+					else
+					{
+						cout << " ";
+					}
+					cout << endl;
+					break;
+				}
+
+				if (grid_sides_nodes[i][j].down)
+				{
 					cout << "|";
+				}
+				else
+				{
+					cout << " ";
 				}
 
 				cout << " ";
@@ -59,22 +77,29 @@ void SticksGameSquares::drawBoard() const
 
 				cout << " ";
 			}
-			if (grid_sides_nodes[i][board.getCellsSizeX() - 1].down)
-				cout << "|";
-			cout << endl;
 		}
+		else
+		{
+			// drawing bottom of Grid
+			for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
+				if (j == board.getCellsSizeX())
+				{
+					cout << "•" << endl;
+					break;
+				}
 
-		// bottom part
-		for (int j = 0; j < board.getSidesNodesSizeX(); j++) {
-			if (grid_sides_nodes[i][j].right)
-			{
-				cout << "•---";
+				cout << "•";
+
+				if (grid_sides_nodes[i][j].right)
+				{
+					cout << "---";
+				}
+				else
+				{
+					cout << "   ";
+				}
 			}
-			else
-			{
-				cout << "•   ";
-			}
+			break;
 		}
-		cout << "•" << endl;
 	}
 }

@@ -6,50 +6,13 @@ using namespace std;
 
 Board::Board(size_t size) :
 	grid_cells(size, vector<Cell>(size)),
-	flatten_grid_cells(size* size),
-	grid_sides_nodes(size + 1, vector<SidesNode>(size)),
-	flatten_grid_sides_nodes((size + 1)* size)
-{
-
-	// Initialize grid_cells and flatten_grid_cells
-	for (size_t i = 0; i < size; ++i) {
-		for (size_t j = 0; j < size; ++j) {
-			grid_cells[i][j] = Cell();
-			flatten_grid_cells[i * size + j] = grid_cells[i][j];
-		}
-	}
-
-	// Initialize grid_nodes_sides and flatten_grid_nodes_sides
-	for (size_t i = 0; i <= size; ++i) {
-		for (size_t j = 0; j <= size; ++j) {
-			grid_sides_nodes[i][j] = SidesNode();
-			flatten_grid_sides_nodes[i * size + j] = grid_sides_nodes[i][j];
-		}
-	}
-};
+	grid_sides_nodes(size + 1, vector<SidesNode>(size + 1))
+{};
 
 Board::Board(size_t sizeX, size_t sizeY) :
 	grid_cells(sizeX, vector<Cell>(sizeY)),
-	flatten_grid_cells(sizeX* sizeY),
-	grid_sides_nodes(sizeX + 1, vector<SidesNode>(sizeY + 1)),
-	flatten_grid_sides_nodes((sizeX + 1)* (sizeY + 1))
-{
-	// Initialize grid_cells and flatten_grid_cells
-	for (size_t i = 0; i < sizeX; ++i) {
-		for (size_t j = 0; j < sizeY; ++j) {
-			grid_cells[i][j] = Cell();
-			flatten_grid_cells[i * sizeY + j] = grid_cells[i][j];
-		}
-	}
-
-	// Initialize grid_nodes_sides and flatten_grid_nodes_sides
-	for (size_t i = 0; i <= sizeX; ++i) {
-		for (size_t j = 0; j <= sizeY; ++j) {
-			grid_sides_nodes[i][j] = SidesNode();
-			flatten_grid_sides_nodes[i * (sizeY + 1) + j] = grid_sides_nodes[i][j];
-		}
-	}
-}
+	grid_sides_nodes(sizeX + 1, vector<SidesNode>(sizeY + 1))
+{};
 
 vector<vector<Cell>> Board::getGridCells() const
 {
@@ -58,11 +21,6 @@ vector<vector<Cell>> Board::getGridCells() const
 
 vector<Cell> Board::getFlattenGridCells() const
 {
-	if (flatten_grid_cells.empty())
-	{
-		return flatten_grid_cells;
-	}
-
 	return flatten(grid_cells);
 }
 
@@ -73,11 +31,6 @@ vector<vector<SidesNode>> Board::getGridNodeSides() const
 
 vector<SidesNode> Board::getFlattenGridNodesSides() const
 {
-	if (flatten_grid_sides_nodes.empty())
-	{
-		return flatten_grid_sides_nodes;
-	}
-
 	return flatten(grid_sides_nodes);
 }
 
@@ -116,19 +69,11 @@ size_t Board::getSidesNodesSizeY() const
 
 size_t Board::getCellsTotal() const
 {
-	if (flatten_grid_cells.size() != 0)
-	{
-		return flatten_grid_cells.size();
-	}
 	return getCellsSizeX() * getCellsSizeY();
 }
 
 size_t Board::getSidesNodesTotal() const
 {
-	if (flatten_grid_sides_nodes.size() != 0)
-	{
-		return flatten_grid_sides_nodes.size();
-	}
 	return getSidesNodesSizeX() * getSidesNodesSizeY();
 }
 

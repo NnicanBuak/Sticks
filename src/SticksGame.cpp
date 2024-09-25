@@ -1,26 +1,32 @@
 #include "../include/SticksGame.h"
 
 
-void SticksGame::start()
+SticksGame::SticksGame(int boardType, size_t boardSizeX, size_t boardSizeY, vector<Player*> players) :
+	players(players)
 {
-	drawBoard();
-	while (getWinner() == nullptr)
-	{
-		nextTurn();
+	turn_player_id = players[0]->getId();
+
+	switch (boardType) {
+	case 3:
+		board = new GameBoard3(boardSizeX, boardSizeY);
+		break;
+	case 4:
+		board = new GameBoard4(boardSizeX, boardSizeY);
+		break;
+	case 6:
+		board = new GameBoard6(boardSizeX, boardSizeY);
+		break;
+	default:
+		throw invalid_argument("Invalid board type");
 	}
-}
+};
 
-SticksGame::SticksGame(size_t boardStructureType, size_t boardSize, vector<Player*> players) :
-	board(boardSize),
-	board_structure_type(boardStructureType),
-	players(players)
-{}
-
-SticksGame::SticksGame(size_t boardStructureType, size_t boardSizeX, size_t boardSizeY, vector<Player*> players) :
-	board(boardSizeX, boardSizeY),
-	board_structure_type(boardStructureType),
-	players(players)
-{};
+SticksGame::~SticksGame()
+{
+	for (Player* player : players) {
+		delete player;
+	}
+};
 
 Player* SticksGame::getPlayer(int id) const
 {
@@ -44,7 +50,7 @@ Player* SticksGame::getWinner() const {
 	}
 
 	// Check winning condition
-	if (winner != nullptr && maxCells > board.getCellsTotal() / 2) {
+	if (winner != nullptr && maxCells > board->getCellsTotal() / 2) {
 		return winner;
 	}
 
@@ -53,6 +59,20 @@ Player* SticksGame::getWinner() const {
 
 bool SticksGame::isGameOver() const
 {
-	return !board.hasEmptyCells();
+	return !board->hasEmptyCells();
+}
+
+void SticksGame::start()
+{
+	board->draw();
+	while (getWinner() == nullptr)
+	{
+		nextTurn();
+	}
+}
+
+void SticksGame::nextTurn()
+{
+	GridCell* move = getPlayer(turn_player_id)->requestDecision(board);
 }
 

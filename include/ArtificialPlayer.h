@@ -6,9 +6,8 @@ class ArtificialPlayer :
     public Player
 {
 public:
-    explicit ArtificialPlayer(char name);
-    ~ArtificialPlayer() {};
+    using Player::Player;
 
-    Cell* requestDecision(Board board) const override;
+    GridCell* requestDecision(GameBoard* board) const override;
 };
 

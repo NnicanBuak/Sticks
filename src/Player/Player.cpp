@@ -1,13 +1,13 @@
-#include "../include/Player.h"
-
-using namespace std;
+#include "../../include/Player.h"
 
 
 int Player::current_id = -1;
 
 Player::Player(char name) :
-	id(current_id++), name(name)
-{};
+	id(current_id++),
+	name(name)
+{
+}
 
 char Player::getId() const
 {
@@ -23,4 +23,3 @@ int Player::getTotalCellsClaimed() const
 {
 	return cells_claimed;
 }
-

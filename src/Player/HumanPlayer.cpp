@@ -1,4 +1,4 @@
-#include "../include/HumanPlayer.h"
+#include "../../include/HumanPlayer.h"
 #include <iostream>
 #include <string>
 #ifdef __has_include
@@ -10,20 +10,15 @@
 #endif
 #endif
 
-using namespace std;
 
-
-HumanPlayer::HumanPlayer(char name) :
-    Player(name) {};
-
-Cell* HumanPlayer::requestDecision(Board board) const
+GridCell* HumanPlayer::requestDecision(GameBoard* board) const
 {
 	string input;
 	cout << "Choose cell: ";
 	cin >> input;
 	cout << endl;
 
-    vector<Cell> cells = board.getFlattenGridCells();
+    vector<GridCell> cells = board->getCellsFlattenGrid();
 
     try {
         int normalized_input = stoi(input);
@@ -35,11 +30,11 @@ Cell* HumanPlayer::requestDecision(Board board) const
             return nullptr;
         }
     }
-    catch (const std::invalid_argument& e) {
+    catch (const invalid_argument& e) {
         cout << "Invalid input. Please enter a valid number." << endl;
         return nullptr;
     }
-    catch (const std::out_of_range& e) {
+    catch (const out_of_range& e) {
         cout << "Invalid input. Number out of range." << endl;
         return nullptr;
     }

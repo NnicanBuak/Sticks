@@ -131,21 +131,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ArtificialPlayer.cpp" />
-    <ClCompile Include="src\Board.cpp" />
-    <ClCompile Include="src\HumanPlayer.cpp" />
+    <ClCompile Include="src\GameBoard\GameBoard3.cpp" />
+    <ClCompile Include="src\GameBoard\GameBoard4.cpp" />
+    <ClCompile Include="src\GameBoard\GameBoard6.cpp" />
+    <ClCompile Include="src\GameBoard\GameBoard.cpp" />
+    <ClCompile Include="src\Grid\GridNode.cpp" />
+    <ClCompile Include="src\Grid\GridCell.cpp" />
+    <ClCompile Include="src\Player\ArtificialPlayer.cpp" />
+    <ClCompile Include="src\Player\HumanPlayer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Player\Player.cpp" />
     <ClCompile Include="src\SticksGame.cpp" />
-    <ClCompile Include="src\SticksGameSquares.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GameBoard3.h" />
+    <ClInclude Include="include\GameBoard4.h" />
+    <ClInclude Include="include\GameBoard6.h" />
+    <ClInclude Include="include\GridNode.h" />
+    <ClInclude Include="include\GridCell.h" />
     <ClInclude Include="include\flatten.h" />
     <ClInclude Include="include\HumanPlayer.h" />
-    <ClInclude Include="include\Board.h" />
+    <ClInclude Include="include\GameBoard.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SticksGame.h" />
-    <ClInclude Include="include\SticksGameSquares.h" />
     <ClInclude Include="include\ArtificialPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

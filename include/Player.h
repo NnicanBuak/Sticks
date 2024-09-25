@@ -1,5 +1,7 @@
 #pragma once
-#include "Board.h"
+#include "GameBoard.h"
+
+using namespace std;
 
 
 class Player
@@ -12,11 +14,11 @@ protected:
 	int cells_claimed = 0;
 public:
 	explicit Player(char name);
-	~Player() {};
+	virtual ~Player() = default;
 
 	char getId() const;
 	char getName() const;
 	int getTotalCellsClaimed() const;
 
-	virtual Cell* requestDecision(Board board) const = 0;
+	virtual GridCell* requestDecision(GameBoard* board) const = 0;
 };

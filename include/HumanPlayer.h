@@ -6,9 +6,8 @@ class HumanPlayer :
     public Player 
 { 
 public:
-	explicit HumanPlayer(char name);
-	~HumanPlayer() {};
+	using Player::Player;
 
-	Cell* requestDecision(Board board) const override;
+	GridCell* requestDecision(GameBoard* board) const override;
 };
 

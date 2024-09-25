@@ -1,7 +1,8 @@
 #pragma once
-#include "Board.h"
+#include "GameBoard3.h"
+#include "GameBoard4.h"
+#include "GameBoard6.h"
 #include "Player.h"
-#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -10,16 +11,13 @@ using namespace std;
 class SticksGame
 {
 private:
-    size_t board_structure_type;
-protected:
-    Board board;
+    GameBoard* board;
     vector<Player*> players;
     int step = 1;
-    int turn_player_id = players[0]->getId();
+    int turn_player_id;
 public:
-    explicit SticksGame(size_t boardStructureType, size_t boardSize, vector<Player*> players);
-    explicit SticksGame(size_t boardStructureType, size_t boardSizeX, size_t boardSizeY, vector<Player*> players);
-    ~SticksGame() {};
+    explicit SticksGame(int boardType, size_t boardSizeX, size_t boardSizeY, vector<Player*> players);
+    ~SticksGame();
 
     Player* getPlayer(int id) const;
     Player* getWinner() const;
@@ -27,6 +25,5 @@ public:
 
     void start();
 
-    virtual void nextTurn() = 0;
-    virtual void drawBoard() const = 0;
+    void nextTurn(); 
 };
